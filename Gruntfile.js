@@ -19,9 +19,6 @@ module.exports = function (grunt) {
 				         " * @author <%= pkg.author %>\n" +
 				         " * @copyright <%= grunt.template.today('yyyy') %> <%= pkg.author %>\n" +
 				         " * @license <%= pkg.license %>\n" +
-				         " * @link <%= pkg.homepage %>\n" +
-				         " * @module <%= pkg.name %>\n" +
-				         " * @version <%= pkg.version %>\n" +
 				         " */\n\n"
 			},
 			dist : {
