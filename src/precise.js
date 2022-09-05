@@ -1,15 +1,4 @@
-/**
- * Precision timer for nanosecond differences
- *
- * @author Jason Mulligan <jason.mulligan@avoidwork.com>
- * @copyright 2015 Jason Mulligan <jason.mulligan@avoidwork.com>
- * @license BSD-3-Clause
- */
-
-const hasStarted = "Timer has been started";
-const hasStopped = "Timer has been stopped";
-const notStarted = "Timer has not been started";
-const notStopped = "Timer has not been stopped";
+import {hasStarted, hasStopped, notStarted, notStopped} from "./constants.js";
 
 class Precise {
 	constructor () {
@@ -17,12 +6,18 @@ class Precise {
 		this.stopped = [];
 	}
 
-	diff () {
+	diff (ms = false) {
 		if (this.stopped.length === 0) {
 			throw new Error(notStopped);
 		}
 
-		return this.stopped[0] * 1e9 + this.stopped[1];
+		let result = this.stopped[0] * 1e9 + this.stopped[1];
+
+		if (ms) {
+			result = parseInt(result / 1e6, 10);
+		}
+
+		return result;
 	}
 
 	start () {
@@ -50,8 +45,6 @@ class Precise {
 	}
 }
 
-function factory () {
+export function precise () {
 	return new Precise();
 }
-
-module.exports = factory;

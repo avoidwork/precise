@@ -1,7 +1,7 @@
 {
   "name": "precise",
   "description": "Precision timer for nanosecond differences",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "homepage": "http://avoidwork.github.io/precise",
   "author": "Jason Mulligan <jason.mulligan@avoidwork.com>",
   "repository": {
@@ -12,24 +12,32 @@
     "url": "https://github.com/avoidwork/precise/issues"
   },
   "license": "BSD-3-Clause",
-  "main": "lib/precise",
+  "source": "src/precise.js",
+  "main": "dist/precise.cjs",
+  "module": "dist/precise.esm.js",
+  "type": "module",
+  "sourceType": "module",
+  "engineStrict": true,
   "engines": {
-    "node": ">=0.10.0"
+    "node": ">= 16.0.0"
   },
   "scripts": {
-    "test": "grunt test"
+    "build": "npm run lint && rm -rf dist/* && npm run rollup",
+    "changelog": "auto-changelog -p",
+    "rollup": "rollup --config",
+    "lint": "eslint *.js src/*.js test/*.js",
+    "mocha": "mocha test/*.js",
+    "test": "npm run lint && npm run mocha"
   },
   "devDependencies": {
-    "babel-eslint": "^4.1.1",
-    "grunt": "~0.4.5",
-    "grunt-babel": "^5.0.1",
-    "grunt-cli": "~0.1.13",
-    "grunt-contrib-concat": "~0.5.1",
-    "grunt-contrib-nodeunit": "~0.4.1",
-    "grunt-contrib-watch": "~0.6.1",
-    "grunt-eslint": "^17.1.0"
+    "auto-changelog": "^2.4.0",
+    "eslint": "^8.23.0",
+    "mocha": "^10.0.0",
+    "rollup": "^2.79.0",
+    "rollup-plugin-terser": "^7.0.2"
   },
   "keywords": [
+    "cpu",
     "precise",
     "precision",
     "nanosecond",
