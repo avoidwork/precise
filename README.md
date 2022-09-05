@@ -1,8 +1,6 @@
 # precise
 Nanosecond timer for node.js
 
-[![build status](https://secure.travis-ci.org/avoidwork/precise.png)](http://travis-ci.org/avoidwork/precise)
-
 ## API
 ### start()
 Starts a timer
@@ -10,15 +8,16 @@ Starts a timer
 ### stop()
 Stops a timer
 
-### diff()
-Returns the nanoseconds between `start()` & `stop()`
+### diff(ms = false)
+Returns the time delta between `start()` & `stop()`; setting optional parameter to `true` will return the delta as milliseconds
 
 ## Example
+```javascript
+import {precise} from "precise";
+const timer = precise().start();
+setTimeout(() => console.log(timer.stop().diff()), 1000);
 ```
-var precise = require('precise'),
-    timer   = precise().start();
 
-setTimeout(function () {
-	console.log(timer.stop().diff());
-}, 1000);
-```
+## License
+Copyright (c) 2022 Jason Mulligan
+Licensed under the BSD-3 license
