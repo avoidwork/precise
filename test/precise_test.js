@@ -1,4 +1,4 @@
-import {default as assert} from "node:assert";
+import * as assert from "assert";
 import {precise} from "../dist/precise.esm.js";
 
 describe("Testing starting state", function () {
