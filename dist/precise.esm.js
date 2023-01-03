@@ -1,9 +1,9 @@
 /**
  * precise
  *
- * @copyright 2022 Jason Mulligan <jason.mulligan@avoidwork.com>
+ * @copyright 2023 Jason Mulligan <jason.mulligan@avoidwork.com>
  * @license BSD-3-Clause
- * @version 2.0.0
+ * @version 2.0.1
  */
 const hasStarted = "Timer has been started";
 const hasStopped = "Timer has been stopped";

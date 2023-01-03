@@ -1,11 +1,11 @@
 /**
  * precise
  *
- * @copyright 2022 Jason Mulligan <jason.mulligan@avoidwork.com>
+ * @copyright 2023 Jason Mulligan <jason.mulligan@avoidwork.com>
  * @license BSD-3-Clause
- * @version 2.0.0
+ * @version 2.0.1
  */
-'use strict';Object.defineProperty(exports,'__esModule',{value:true});const hasStarted = "Timer has been started";
+'use strict';const hasStarted = "Timer has been started";
 const hasStopped = "Timer has been stopped";
 const notStarted = "Timer has not been started";
 const notStopped = "Timer has not been stopped";class Precise {

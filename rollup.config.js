@@ -1,6 +1,7 @@
-import pkg from "./package.json";
+import {readFileSync} from "node:fs";
+import {terser} from "rollup-plugin-terser";
 
-const {terser} = require("rollup-plugin-terser");
+const pkg = JSON.parse(readFileSync(new URL("./package.json", import.meta.url)));
 const year = new Date().getFullYear();
 const bannerLong = `/**
  * ${pkg.name}
