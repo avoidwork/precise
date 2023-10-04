@@ -1,4 +1,5 @@
 # precise
+
 Nanosecond timer for node.js
 
 ## Using the factory
@@ -36,15 +37,24 @@ All files    |     100 |      100 |     100 |     100 |
 ```
 
 ## API
+
+### diff(ms = false)
+
+Returns the time delta between `start()` & `stop()`; setting optional parameter to `true` will return the delta as milliseconds
+
+### reset()
+
+Reset a timer
+
 ### start()
+
 Starts a timer
 
 ### stop()
+
 Stops a timer
 
-### diff(ms = false)
-Returns the time delta between `start()` & `stop()`; setting optional parameter to `true` will return the delta as milliseconds
-
 ## License
+
 Copyright (c) 2023 Jason Mulligan
 Licensed under the BSD-3 license

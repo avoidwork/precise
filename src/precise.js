@@ -21,6 +21,13 @@ export class Precise {
 		return result;
 	}
 
+	reset () {
+		this.started = BIG_INT_NEG_1;
+		this.stopped = BIG_INT_NEG_1;
+
+		return this;
+	}
+
 	start () {
 		if (this.started > BIG_INT_NEG_1) {
 			throw new Error(hasStarted);

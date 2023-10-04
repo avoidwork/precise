@@ -3,7 +3,7 @@
  *
  * @copyright 2023 Jason Mulligan <jason.mulligan@avoidwork.com>
  * @license BSD-3-Clause
- * @version 3.1.0
+ * @version 4.0.0
  */
 import {hrtime}from'node:process';const hasStarted = "Timer has been started";
 const hasStopped = "Timer has been stopped";
@@ -27,6 +27,13 @@ const BIG_INT_NEG_1 = BigInt(-1);class Precise {
 		}
 
 		return result;
+	}
+
+	reset () {
+		this.started = BIG_INT_NEG_1;
+		this.stopped = BIG_INT_NEG_1;
+
+		return this;
 	}
 
 	start () {
