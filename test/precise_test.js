@@ -51,4 +51,13 @@ describe("Testing difference", function () {
 		assert.strictEqual(this.timer.diff() > this.timer.diff(true), true, "Should be 'true'");
 		assert.strictEqual(parseInt(this.timer.diff() / 1e6, 10), this.timer.diff(true), "Should be 'true'");
 	});
+
+	it("It should have different values when started & stopped at different times", function (done) {
+		this.timer.start();
+		setTimeout(() => {
+			this.timer.stop();
+			assert.strictEqual(this.timer.stopped > this.timer.started, true, "Should be 'true'");
+			done();
+		}, 250);
+	});
 });
