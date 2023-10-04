@@ -1,17 +1,18 @@
-import {hasStarted, hasStopped, notStarted, notStopped} from "./constants.js";
+import {hrtime} from "node:process";
+import {hasStarted, hasStopped, notStarted, notStopped, BIG_INT_NEG_1} from "./constants.js";
 
 export class Precise {
 	constructor () {
-		this.started = [];
-		this.stopped = [];
+		this.started = BIG_INT_NEG_1;
+		this.stopped = BIG_INT_NEG_1;
 	}
 
 	diff (ms = false) {
-		if (this.stopped.length === 0) {
+		if (this.stopped === BIG_INT_NEG_1) {
 			throw new Error(notStopped);
 		}
 
-		let result = this.stopped[0] * 1e9 + this.stopped[1];
+		let result = Number(this.stopped - this.started);
 
 		if (ms) {
 			result = parseInt(result / 1e6, 10);
@@ -21,25 +22,25 @@ export class Precise {
 	}
 
 	start () {
-		if (this.started.length > 0) {
+		if (this.started > BIG_INT_NEG_1) {
 			throw new Error(hasStarted);
 		}
 
-		this.started = process.hrtime();
+		this.started = hrtime.bigint();
 
 		return this;
 	}
 
 	stop () {
-		if (this.started.length === 0) {
+		if (this.started === BIG_INT_NEG_1) {
 			throw new Error(notStarted);
 		}
 
-		if (this.stopped.length > 0) {
+		if (this.stopped > BIG_INT_NEG_1) {
 			throw new Error(hasStopped);
 		}
 
-		this.stopped = process.hrtime(this.started);
+		this.stopped = hrtime.bigint();
 
 		return this;
 	}

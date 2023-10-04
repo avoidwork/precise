@@ -1,5 +1,6 @@
 import assert from "node:assert";
 import {precise} from "../dist/precise.cjs";
+import {BIG_INT_NEG_1} from "../src/constants.js";
 
 describe("Testing starting state", function () {
 	beforeEach(function () {
@@ -7,14 +8,14 @@ describe("Testing starting state", function () {
 	});
 
 	it("It should be empty", function () {
-		assert.strictEqual(this.timer.started.length, 0, "Should be '0'");
-		assert.strictEqual(this.timer.stopped.length, 0, "Should be '0'");
+		assert.strictEqual(this.timer.started, BIG_INT_NEG_1, "Should be '-1n'");
+		assert.strictEqual(this.timer.stopped, BIG_INT_NEG_1, "Should be '-1n'");
 	});
 
 	it("It shouldn't be empty", function () {
 		const timer = this.timer.start();
-		assert.notEqual(this.timer.started.length, 0, "Shouldn't be '0'");
-		assert.strictEqual(this.timer.stopped.length, 0, "Should be '0'");
+		assert.notEqual(this.timer.started, BIG_INT_NEG_1, "Shouldn't be '-1n'");
+		assert.strictEqual(this.timer.stopped, BIG_INT_NEG_1, "Should be '-1n'");
 		assert.throws(function () { timer.start(); }, Error, "Should be an 'Error'");
 	});
 });
@@ -29,8 +30,8 @@ describe("Testing stopping state", function () {
 		assert.throws(function () { timer.diff(); }, Error, "Should be an 'Error'");
 		assert.throws(function () { timer.stop(); }, Error, "Should be an 'Error'");
 		this.timer.start().stop();
-		assert.notEqual(this.timer.started.length, 0, "Shouldn't be '0'");
-		assert.notEqual(this.timer.started.length, 0, "Shouldn't be '0'");
+		assert.notEqual(this.timer.started, BIG_INT_NEG_1, "Shouldn't be '-1n'");
+		assert.notEqual(this.timer.started, BIG_INT_NEG_1, "Shouldn't be '-1n'");
 		assert.throws(function () { timer.stop(); }, Error, "Should be an 'Error'");
 	});
 });

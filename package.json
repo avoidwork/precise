@@ -1,7 +1,7 @@
 {
   "name": "precise",
   "description": "Precision timer for nanosecond differences",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "homepage": "http://avoidwork.github.io/precise",
   "author": "Jason Mulligan <jason.mulligan@avoidwork.com>",
   "repository": {
@@ -23,7 +23,7 @@
   "types": "types/precise.d.ts",
   "engineStrict": true,
   "engines": {
-    "node": ">= 10.4.0"
+    "node": ">= 10.7.0"
   },
   "scripts": {
     "build": "npm run lint && npm run rollup && npm run mocha",

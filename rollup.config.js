@@ -26,6 +26,7 @@ export default [
 				...esmOutBase,
 				file: `dist/${pkg.name}.js`
 			}
-		]
+		],
+		external: ["node:process"]
 	}
 ];
