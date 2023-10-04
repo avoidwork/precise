@@ -8,7 +8,7 @@ describe("Testing starting state", function () {
 
 	it("It should be empty", function () {
 		assert.strictEqual(this.timer.started.length, 0, "Should be '0'");
-		assert.equal(this.timer.stopped.length, 0, "Should be '0'");
+		assert.strictEqual(this.timer.stopped.length, 0, "Should be '0'");
 	});
 
 	it("It shouldn't be empty", function () {
@@ -45,9 +45,9 @@ describe("Testing difference", function () {
 		assert.throws(function () { timer.diff(); }, Error, "Should be an 'Error'");
 		assert.throws(function () { timer.diff(); }, Error, "Should be an 'Error'");
 		this.timer.start().stop();
-		assert.equal(typeof this.timer.diff(), "number", "Should be 'number'");
-		assert.equal(typeof this.timer.diff(true), "number", "Should be 'number'");
-		assert.equal(this.timer.diff() > this.timer.diff(true), true, "Should be 'true'");
-		assert.equal(parseInt(this.timer.diff() / 1e6, 10), this.timer.diff(true), "Should be 'true'");
+		assert.strictEqual(typeof this.timer.diff(), "number", "Should be 'number'");
+		assert.strictEqual(typeof this.timer.diff(true), "number", "Should be 'number'");
+		assert.strictEqual(this.timer.diff() > this.timer.diff(true), true, "Should be 'true'");
+		assert.strictEqual(parseInt(this.timer.diff() / 1e6, 10), this.timer.diff(true), "Should be 'true'");
 	});
 });
