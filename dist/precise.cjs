@@ -3,12 +3,16 @@
  *
  * @copyright 2023 Jason Mulligan <jason.mulligan@avoidwork.com>
  * @license BSD-3-Clause
- * @version 2.0.1
+ * @version 3.0.0
  */
-'use strict';const hasStarted = "Timer has been started";
+'use strict';
+
+const hasStarted = "Timer has been started";
 const hasStopped = "Timer has been stopped";
 const notStarted = "Timer has not been started";
-const notStopped = "Timer has not been stopped";class Precise {
+const notStopped = "Timer has not been stopped";
+
+class Precise {
 	constructor () {
 		this.started = [];
 		this.stopped = [];
@@ -55,4 +59,7 @@ const notStopped = "Timer has not been stopped";class Precise {
 
 function precise () {
 	return new Precise();
-}exports.precise=precise;
+}
+
+exports.Precise = Precise;
+exports.precise = precise;

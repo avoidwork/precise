@@ -3,7 +3,7 @@
  *
  * @copyright 2023 Jason Mulligan <jason.mulligan@avoidwork.com>
  * @license BSD-3-Clause
- * @version 2.0.1
+ * @version 3.0.0
  */
 const hasStarted = "Timer has been started";
 const hasStopped = "Timer has been stopped";
@@ -55,4 +55,4 @@ const notStopped = "Timer has not been stopped";class Precise {
 
 function precise () {
 	return new Precise();
-}export{precise};
+}export{Precise,precise};

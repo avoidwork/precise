@@ -14,6 +14,6 @@ results
 npm-debug.log
 node_modules
 .sass-cache
-node_modules/
-.idea/
-
+.idea
+.nyc_output
+*.tgz

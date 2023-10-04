@@ -1,6 +1,6 @@
 import {hasStarted, hasStopped, notStarted, notStopped} from "./constants.js";
 
-class Precise {
+export class Precise {
 	constructor () {
 		this.started = [];
 		this.stopped = [];

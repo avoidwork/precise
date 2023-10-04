@@ -1,5 +1,5 @@
 import assert from "node:assert";
-import {precise} from "../dist/precise.esm.js";
+import {precise} from "../dist/precise.cjs";
 
 describe("Testing starting state", function () {
 	beforeEach(function () {
@@ -12,10 +12,10 @@ describe("Testing starting state", function () {
 	});
 
 	it("It shouldn't be empty", function () {
-		this.timer.start();
+		const timer = this.timer.start();
 		assert.notEqual(this.timer.started.length, 0, "Shouldn't be '0'");
 		assert.strictEqual(this.timer.stopped.length, 0, "Should be '0'");
-		assert.throws(function () { this.timer.start(); }, Error, "Should be an 'Error'");
+		assert.throws(function () { timer.start(); }, Error, "Should be an 'Error'");
 	});
 });
 
@@ -25,11 +25,13 @@ describe("Testing stopping state", function () {
 	});
 
 	it("It shouldn't be empty", function () {
-		assert.throws(function () { this.timer.stop(); }, Error, "Should be an 'Error'");
+		const timer = this.timer;
+		assert.throws(function () { timer.diff(); }, Error, "Should be an 'Error'");
+		assert.throws(function () { timer.stop(); }, Error, "Should be an 'Error'");
 		this.timer.start().stop();
 		assert.notEqual(this.timer.started.length, 0, "Shouldn't be '0'");
 		assert.notEqual(this.timer.started.length, 0, "Shouldn't be '0'");
-		assert.throws(function () { this.timer.stop(); }, Error, "Should be an 'Error'");
+		assert.throws(function () { timer.stop(); }, Error, "Should be an 'Error'");
 	});
 });
 
@@ -39,7 +41,9 @@ describe("Testing difference", function () {
 	});
 
 	it("It should return an integer", function () {
-		assert.throws(function () { this.timer.diff(); }, Error, "Should be an 'Error'");
+		const timer = this.timer;
+		assert.throws(function () { timer.diff(); }, Error, "Should be an 'Error'");
+		assert.throws(function () { timer.diff(); }, Error, "Should be an 'Error'");
 		this.timer.start().stop();
 		assert.equal(typeof this.timer.diff(), "number", "Should be 'number'");
 		assert.equal(typeof this.timer.diff(true), "number", "Should be 'number'");
