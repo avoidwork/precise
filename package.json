@@ -29,7 +29,7 @@
     "build": "npm run lint && npm run rollup && npm run mocha",
     "changelog": "auto-changelog -p",
     "rollup": "rollup --config",
-    "fix": "eslint *.js src/*.js test/*.js",
+    "fix": "eslint --fix *.js src/*.js test/*.js",
     "lint": "eslint *.js src/*.js test/*.js",
     "mocha": "nyc mocha test/*.js",
     "prepare": "husky install",
