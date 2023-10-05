@@ -3,7 +3,7 @@
  *
  * @copyright 2023 Jason Mulligan <jason.mulligan@avoidwork.com>
  * @license BSD-3-Clause
- * @version 4.0.0
+ * @version 4.0.1
  */
 'use strict';
 
@@ -22,6 +22,10 @@ class Precise {
 	}
 
 	diff (ms = false) {
+		if (this.started === BIG_INT_NEG_1) {
+			throw new Error(notStarted);
+		}
+
 		if (this.stopped === BIG_INT_NEG_1) {
 			throw new Error(notStopped);
 		}

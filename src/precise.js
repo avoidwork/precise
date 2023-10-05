@@ -8,6 +8,10 @@ export class Precise {
 	}
 
 	diff (ms = false) {
+		if (this.started === BIG_INT_NEG_1) {
+			throw new Error(notStarted);
+		}
+
 		if (this.stopped === BIG_INT_NEG_1) {
 			throw new Error(notStopped);
 		}

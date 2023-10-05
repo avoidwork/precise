@@ -29,7 +29,9 @@ describe("Testing stopping state", function () {
 		const timer = this.timer;
 		assert.throws(function () { timer.diff(); }, Error, "Should be an 'Error'");
 		assert.throws(function () { timer.stop(); }, Error, "Should be an 'Error'");
-		this.timer.start().stop();
+		this.timer.start();
+		assert.throws(function () { timer.diff(); }, Error, "Should be an 'Error'");
+		this.timer.stop();
 		assert.notEqual(this.timer.started, BIG_INT_NEG_1, "Shouldn't be '-1n'");
 		assert.notEqual(this.timer.started, BIG_INT_NEG_1, "Shouldn't be '-1n'");
 		assert.throws(function () { timer.stop(); }, Error, "Should be an 'Error'");
