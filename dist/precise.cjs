@@ -3,16 +3,16 @@
  *
  * @copyright 2023 Jason Mulligan <jason.mulligan@avoidwork.com>
  * @license BSD-3-Clause
- * @version 4.0.1
+ * @version 4.0.2
  */
 'use strict';
 
 var node_process = require('node:process');
 
-const hasStarted = "Timer has been started";
-const hasStopped = "Timer has been stopped";
-const notStarted = "Timer has not been started";
-const notStopped = "Timer has not been stopped";
+const STARTED = "Timer has been started";
+const STOPPED = "Timer has been stopped";
+const NOT_STARTED = "Timer has not been started";
+const NOT_STOPPED = "Timer has not been stopped";
 const BIG_INT_NEG_1 = BigInt(-1);
 
 class Precise {
@@ -23,11 +23,11 @@ class Precise {
 
 	diff (ms = false) {
 		if (this.started === BIG_INT_NEG_1) {
-			throw new Error(notStarted);
+			throw new Error(NOT_STARTED);
 		}
 
 		if (this.stopped === BIG_INT_NEG_1) {
-			throw new Error(notStopped);
+			throw new Error(NOT_STOPPED);
 		}
 
 		let result = Number(this.stopped - this.started);
@@ -48,7 +48,7 @@ class Precise {
 
 	start () {
 		if (this.started > BIG_INT_NEG_1) {
-			throw new Error(hasStarted);
+			throw new Error(STARTED);
 		}
 
 		this.started = node_process.hrtime.bigint();
@@ -58,11 +58,11 @@ class Precise {
 
 	stop () {
 		if (this.started === BIG_INT_NEG_1) {
-			throw new Error(notStarted);
+			throw new Error(NOT_STARTED);
 		}
 
 		if (this.stopped > BIG_INT_NEG_1) {
-			throw new Error(hasStopped);
+			throw new Error(STOPPED);
 		}
 
 		this.stopped = node_process.hrtime.bigint();

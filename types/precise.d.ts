@@ -1,8 +1,9 @@
 export function precise(): Precise;
 export class Precise {
-    started: BigInteger;
-    stopped: BigInteger;
+    started: any;
+    stopped: any;
     diff(ms?: boolean): number;
+    reset(): this;
     start(): this;
     stop(): this;
 }

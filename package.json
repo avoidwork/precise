@@ -1,8 +1,8 @@
 {
   "name": "precise",
   "description": "Precision timer for nanosecond differences",
-  "version": "4.0.1",
-  "homepage": "http://avoidwork.github.io/precise",
+  "version": "4.0.2",
+  "homepage": "https://github.com/avoidwork/precise",
   "author": "Jason Mulligan <jason.mulligan@avoidwork.com>",
   "repository": {
     "type": "git",
