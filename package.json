@@ -1,7 +1,7 @@
 {
   "name": "precise",
   "description": "Precision timer for nanosecond differences",
-  "version": "4.0.2",
+  "version": "4.0.3",
   "homepage": "https://github.com/avoidwork/precise",
   "author": "Jason Mulligan <jason.mulligan@avoidwork.com>",
   "repository": {
@@ -13,7 +13,7 @@
   },
   "license": "BSD-3-Clause",
   "source": "src/precise.js",
-  "main": "dist/precise",
+  "main": "dist/precise.cjs",
   "exports": {
     "types": "./types/precise.d.ts",
     "import": "./dist/precise.js",

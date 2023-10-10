@@ -3,7 +3,7 @@
  *
  * @copyright 2023 Jason Mulligan <jason.mulligan@avoidwork.com>
  * @license BSD-3-Clause
- * @version 4.0.2
+ * @version 4.0.3
  */
 import {hrtime}from'node:process';const STARTED = "Timer has been started";
 const STOPPED = "Timer has been stopped";
