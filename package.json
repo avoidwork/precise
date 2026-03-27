@@ -26,23 +26,22 @@
     "node": ">= 10.7.0"
   },
   "scripts": {
-    "build": "npm run lint && npm run rollup && npm run mocha",
+    "build": "npm run lint && npm run rollup && npm test",
     "changelog": "auto-changelog -p",
     "rollup": "rollup --config",
-    "fix": "eslint --fix *.js src/*.js test/*.js",
-    "lint": "eslint *.js src/*.js test/*.js",
-    "mocha": "nyc mocha test/*.js",
+    "fix": "oxfmt *.js src/*.js test/*.js && oxlint --fix *.js src/*.js test/*.js",
+    "lint": "oxlint *.js src/*.js test/*.js && oxfmt --check *.js src/*.js test/*.js",
     "prepare": "husky install",
-    "test": "npm run lint && npm run mocha",
+    "test": "npm run lint && node --experimental-test-coverage --test",
+    "test:coverage": "node --experimental-test-coverage --test --experimental-test-reporter",
     "types": "npx -p typescript tsc src/precise.js --declaration --allowJs --emitDeclarationOnly --outDir ./types"
   },
   "devDependencies": {
-    "auto-changelog": "^2.4.0",
-    "eslint": "^8.50.0",
-    "husky": "^9.0.5",
-    "mocha": "^11.0.1",
-    "nyc": "^18.0.0",
-    "rollup": "^4.0.0",
+    "auto-changelog": "^2.5.0",
+    "husky": "^9.1.7",
+    "oxfmt": "^0.42.0",
+    "oxlint": "^1.57.0",
+    "rollup": "^4.60.0",
     "typescript": "^6.0.2"
   },
   "keywords": [
