@@ -1,6 +1,17 @@
 # precise
 
-Nanosecond timer for node.js
+Nanosecond-precision timer for Node.js using `process.hrtime.bigint()`.
+
+## Why precise over `performance.now()`?
+
+While `performance.now()` provides millisecond precision with sub-millisecond fractional parts, **`precise` delivers true nanosecond accuracy** using Node.js's `process.hrtime.bigint()` API:
+
+| Method | Precision | Resolution |
+|--------|-----------|------------|
+| `performance.now()` | Milliseconds | ~0.1-1ms |
+| `precise` | Nanoseconds | ~1ns |
+
+For performance-critical applications measuring code execution, benchmarking, or profiling, the 6 decimal places of additional precision can reveal timing differences that `performance.now()` simply cannot detect.
 
 ## Using the factory
 
