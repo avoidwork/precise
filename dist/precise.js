@@ -6,25 +6,9 @@
  * @version 4.0.3
  */
 import {hrtime}from'node:process';const STARTED = "Timer has been started";
-
-/**
- * Error message: Timer has already been stopped
- */
 const STOPPED = "Timer has been stopped";
-
-/**
- * Error message: Timer has not been started
- */
 const NOT_STARTED = "Timer has not been started";
-
-/**
- * Error message: Timer has not been stopped
- */
 const NOT_STOPPED = "Timer has not been stopped";
-
-/**
- * Sentinel value indicating timer has not started/stopped
- */
 const BIG_INT_NEG_1 = BigInt(-1);/**
  * High-precision timer using process.hrtime.bigint()
  * @class
