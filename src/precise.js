@@ -30,13 +30,9 @@ export class Precise {
 			throw new Error(NOT_STOPPED);
 		}
 
-		let result = Number(this.stopped - this.started);
+		const delta = this.stopped - this.started;
 
-		if (ms) {
-			result = Number((this.stopped - this.started) / 1000000n);
-		}
-
-		return result;
+		return ms ? Number(delta / 1000000n) : Number(delta);
 	}
 
 	/**
