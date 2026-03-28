@@ -91,53 +91,36 @@ test("Elapsed - throws if not started", () => {
 	assert.throws(() => timer.elapsed(), Error, "Should throw NOT_STARTED error");
 });
 
-test("Format - returns formatted time string", async () => {
-	const timer = precise().start();
-	await new Promise((resolve) => setTimeout(resolve, 1500));
-	timer.stop();
-	const formatted = timer.format();
+test("Format - returns formatted time string (1.5s)", () => {
+	const timer = precise().start().stop();
+	const mockDelta = 1500000000n; // 1.5 seconds in nanoseconds
+	const formatted = timer.format(false, mockDelta);
 	assert.ok(formatted.includes("s"), "Should include seconds");
 	assert.ok(!formatted.includes("ms"), "Should not include ms by default");
 });
 
-test("Format - includes milliseconds when requested", async () => {
-	const timer = precise().start();
-	await new Promise((resolve) => setTimeout(resolve, 1500));
-	timer.stop();
-	const formatted = timer.format(true);
+test("Format - includes milliseconds when requested", () => {
+	const timer = precise().start().stop();
+	const mockDelta = 1500000000n; // 1.5 seconds in nanoseconds
+	const formatted = timer.format(true, mockDelta);
 	assert.ok(formatted.includes("ms"), "Should include milliseconds");
 });
 
-test("Format - formats minutes correctly", async () => {
-	const timer = precise().start();
-	await new Promise((resolve) => setTimeout(resolve, 75000)); // 75 seconds = 1m 15s
-	timer.stop();
-	const formatted = timer.format();
+test("Format - formats minutes correctly (1m 15s)", () => {
+	const timer = precise().start().stop();
+	const mockDelta = 75000000000n; // 75 seconds = 1m 15s in nanoseconds
+	const formatted = timer.format(false, mockDelta);
 	assert.ok(formatted.includes("m"), "Should include minutes");
 	assert.ok(formatted.includes("s"), "Should include seconds");
 });
 
-test("Format - formats hours correctly", () => {
-	// Simpler approach: directly test the format logic with known values
-	// 3725 seconds = 1h 2m 5s
-	const format = (elapsedMs) => {
-		const seconds = Math.floor(elapsedMs / 1000);
-		const minutes = Math.floor(seconds / 60);
-		const hours = Math.floor(minutes / 60);
-		const s = seconds % 60;
-		const m = minutes % 60;
-		const h = hours;
-		const parts = [];
-		if (h > 0) parts.push(`${h}h`);
-		if (m > 0 || h > 0) parts.push(`${m}m`);
-		if (s > 0 || m > 0 || h > 0) parts.push(`${s}s`);
-		return parts.length > 0 ? parts.join(" ") : "0ms";
-	};
-
-	const result = format(3725000); // 3725 seconds = 1h 2m 5s
-	assert.ok(result.includes("1h"), "Should include 1h");
-	assert.ok(result.includes("2m"), "Should include 2m");
-	assert.ok(result.includes("5s"), "Should include 5s");
+test("Format - formats hours correctly (1h 2m 5s)", () => {
+	const timer = precise().start().stop();
+	const mockDelta = 3725000000000n; // 3725 seconds = 1h 2m 5s in nanoseconds
+	const formatted = timer.format(false, mockDelta);
+	assert.ok(formatted.includes("1h"), "Should include 1h");
+	assert.ok(formatted.includes("2m"), "Should include 2m");
+	assert.ok(formatted.includes("5s"), "Should include 5s");
 });
 
 test("Format - throws if not started and no delta provided", () => {
