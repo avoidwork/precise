@@ -52,6 +52,13 @@
     "timer",
     "time",
     "difference",
-    "elapsed"
+    "elapsed",
+    "benchmark",
+    "profiling",
+    "hrtime",
+    "performance",
+    "stopwatch",
+    "duration",
+    "high-resolution"
   ]
 }
