@@ -47,4 +47,5 @@ npm run build     # Lint, build, and test
 
 - Uses Node.js native test runner with async/await (no `describe`/`it`)
 - 100% code coverage required
+- All functions and classes must have JSDoc docblocks
 - Extensible via class inheritance: `class MyTimer extends Precise {}`
