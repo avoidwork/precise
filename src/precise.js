@@ -33,7 +33,7 @@ export class Precise {
 		let result = Number(this.stopped - this.started);
 
 		if (ms) {
-			result = parseInt(result / 1e6, 10);
+			result = Number((this.stopped - this.started) / 1000000n);
 		}
 
 		return result;
