@@ -67,6 +67,8 @@ The timer enforces state transitions through validation:
 - **`start()`**: Throws if `started > -1n` (already started)
 - **`stop()`**: Throws if `started === -1n` (not started) or `stopped > -1n` (already stopped)
 - **`diff()`**: Throws if `started === -1n` (not started) or `stopped === -1n` (not stopped)
+- **`elapsed()`**: Throws if `started === -1n` (not started)
+- **`format()`**: Throws if `started === -1n` (not started)
 
 ## Data Types
 
@@ -100,12 +102,14 @@ if (ms) {
 | `start()` | O(1) |
 | `stop()` | O(1) |
 | `diff()` | O(1) |
+| `elapsed()` | O(1) |
+| `format()` | O(1) |
 | `reset()` | O(1) |
 
 ### Memory Usage
 
 Each timer instance uses minimal memory:
-- 2 `BigInt` properties (`started`, `stopped`)
+- 3 private `BigInt` fields (`#started`, `#stopped`, `#delta`)
 - No external dependencies or allocations
 
 ## Build System
@@ -214,4 +218,4 @@ const timer = precise();  // Equivalent to new Precise()
 
 BSD-3-Clause License
 
-Copyright (c) 2023 Jason Mulligan
+Copyright (c) 2026 Jason Mulligan

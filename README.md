@@ -42,6 +42,14 @@ All files    |     100 |      100 |     100 |     100 |
 
 Returns the time delta between `start()` & `stop()`; setting optional parameter to `true` will return the delta as milliseconds
 
+### elapsed(ms = false)
+
+Returns the elapsed time since `start()` without stopping the timer
+
+### format(ms = false)
+
+Returns a human-readable string of the elapsed time (e.g., "1h 2m 3s 456ms")
+
 ### reset()
 
 Reset a timer
@@ -56,5 +64,5 @@ Stops a timer
 
 ## License
 
-Copyright (c) 2023 Jason Mulligan
+Copyright (c) 2026 Jason Mulligan
 Licensed under the BSD-3 license

@@ -12,11 +12,6 @@ const timer = new Precise();
 
 Creates a new timer instance in the initial state (not started, not stopped).
 
-### Properties
-
-- **`started`** (`bigint`) - Nanosecond timestamp when `start()` was called, or `-1n` if not started
-- **`stopped`** (`bigint`) - Nanosecond timestamp when `stop()` was called, or `-1n` if not stopped
-
 ### Methods
 
 #### `start()`
@@ -54,6 +49,34 @@ const milliseconds = timer.diff(true); // milliseconds
   - `ms` (`boolean`, optional, default: `false`) - If `true`, returns milliseconds instead of nanoseconds
 - **Returns:** `number` - Time delta in nanoseconds or milliseconds
 - **Throws:** `Error` if the timer has not been started or stopped
+
+#### `elapsed(ms = false)`
+
+Returns the elapsed time since `start()` without stopping the timer.
+
+```javascript
+const nanoseconds = timer.elapsed();      // nanoseconds
+const milliseconds = timer.elapsed(true); // milliseconds
+```
+
+- **Parameters:**
+  - `ms` (`boolean`, optional, default: `false`) - If `true`, returns milliseconds instead of nanoseconds
+- **Returns:** `number` - Elapsed time in nanoseconds or milliseconds
+- **Throws:** `Error` if the timer has not been started
+
+#### `format(ms = false)`
+
+Returns a human-readable string of the elapsed time.
+
+```javascript
+timer.format();       // "1h 2m 3s"
+timer.format(true);   // "1h 2m 3s 456ms"
+```
+
+- **Parameters:**
+  - `ms` (`boolean`, optional, default: `false`) - If `true`, includes milliseconds in output
+- **Returns:** `string` - Formatted time string (e.g., "1h 2m 3s 456ms")
+- **Throws:** `Error` if the timer has not been started
 
 #### `reset()`
 
@@ -108,6 +131,31 @@ const result = precise()
   .diff();
 ```
 
+### Getting Elapsed Time While Running
+
+```javascript
+import { precise } from 'precise';
+
+const timer = precise().start();
+// ... do something ...
+console.log(`Elapsed so far: ${timer.elapsed(true)} ms`);
+// ... more work ...
+timer.stop();
+console.log(`Total: ${timer.diff(true)} ms`);
+```
+
+### Human-Readable Output
+
+```javascript
+import { precise } from 'precise';
+
+const timer = precise().start();
+// ... long running task ...
+timer.stop();
+console.log(`Duration: ${timer.format()}`);  // "1h 2m 3s"
+console.log(`Duration: ${timer.format(true)}`);  // "1h 2m 3s 456ms"
+```
+
 ### Class Extension
 
 ```javascript
@@ -133,3 +181,5 @@ The timer throws errors in the following situations:
 | `stop()` | Already stopped | "Timer has already been stopped" |
 | `diff()` | Not started | "Timer has not been started" |
 | `diff()` | Not stopped | "Timer has not been stopped" |
+| `elapsed()` | Not started | "Timer has not been started" |
+| `format()` | Not started | "Timer has not been started" |
