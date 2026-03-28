@@ -15,6 +15,41 @@ import { hrtime } from "node:process";
 this.started = hrtime.bigint();  // Returns BigInt nanoseconds since epoch
 ```
 
+### Mathematical Foundation
+
+The precision of `precise` is based on the following mathematical principles:
+
+**High-Resolution Time Base**
+```
+t = hrtime.bigint()  // Returns BigInt in nanoseconds (10^-9 seconds)
+```
+
+Unlike `Date.now()` which returns milliseconds (10^-3 seconds), `hrtime.bigint()` provides 6 decimal places of additional precision:
+- `Date.now()`: ~1ms granularity (e.g., `1710000000123`)
+- `hrtime.bigint()`: ~1ns granularity (e.g., `1710000000123456789n`)
+
+**Time Delta Calculation**
+```
+Δt = t_stop - t_start
+```
+
+Where both `t_stop` and `t_start` are `BigInt` values representing nanoseconds. The subtraction is performed with full precision, and the result is converted to a JavaScript `number` for return.
+
+**Unit Conversion**
+```
+nanoseconds → milliseconds: Δt_ms = ⌊Δt_ns / 10^6⌋
+```
+
+The conversion uses integer division (`parseInt`) to avoid floating-point precision issues:
+```javascript
+result = parseInt(result / 1e6, 10);
+```
+
+**Precision Limits**
+- JavaScript `number` type can safely represent integers up to `2^53 - 1` (≈9 petanoseconds)
+- For typical use cases (< 285 years), `number` precision is sufficient
+- `BigInt` arithmetic ensures no intermediate precision loss during delta calculation
+
 ### State Machine
 
 The timer operates as a finite state machine with three primary states:
