@@ -1,16 +1,37 @@
-ℹ tests 0
+✔ Testing starting state - It should be empty (0.922606ms)
+✔ Testing starting state - It shouldn't be empty (0.152777ms)
+✔ Testing stopping state - It shouldn't be empty (0.187422ms)
+✔ Testing difference - It should return an integer (0.16482ms)
+✔ Testing difference - It should have different values when started & stopped at different times (251.439723ms)
+✔ Testing chaining - It should be chainable (0.169459ms)
+✔ Testing invalid states - It should throw an error (0.18053ms)
+✔ Testing precision - It should be precise (249.865911ms)
+✔ Testing reset - It should reset (0.32429ms)
+✔ Testing elapsed - It should return elapsed time while running (100.598099ms)
+✔ Testing elapsed - It should return milliseconds when requested (99.527334ms)
+✔ Testing elapsed - It should throw if not started (0.237607ms)
+✔ Testing format - It should return formatted time string (1501.853501ms)
+✔ Testing format - It should include milliseconds when requested (1501.82592ms)
+✔ Testing format - It should format hours and minutes (75005.971988ms)
+✔ Testing format - It should throw if not started (0.2231ms)
+ℹ tests 16
 ℹ suites 0
-ℹ pass 0
+ℹ pass 16
 ℹ fail 0
 ℹ cancelled 0
 ℹ skipped 0
 ℹ todo 0
-ℹ duration_ms 3.432138
+ℹ duration_ms 78761.329326
 ℹ start of coverage report
-ℹ ----------------------------------------------------------
-ℹ file      | line % | branch % | funcs % | uncovered lines
-ℹ ----------------------------------------------------------
-ℹ ----------------------------------------------------------
-ℹ all files | 100.00 |   100.00 |  100.00 | 
-ℹ ----------------------------------------------------------
+ℹ -----------------------------------------------------------------
+ℹ file             | line % | branch % | funcs % | uncovered lines
+ℹ -----------------------------------------------------------------
+ℹ src              |        |          |         | 
+ℹ  constants.js    | 100.00 |   100.00 |  100.00 | 
+ℹ  precise.js      | 100.00 |    87.50 |  100.00 | 
+ℹ tests            |        |          |         | 
+ℹ  precise_test.js | 100.00 |   100.00 |  100.00 | 
+ℹ -----------------------------------------------------------------
+ℹ all files        | 100.00 |    93.90 |  100.00 | 
+ℹ -----------------------------------------------------------------
 ℹ end of coverage report
