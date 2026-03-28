@@ -1,6 +1,6 @@
 import assert from "node:assert";
 import { test, beforeEach } from "node:test";
-import { precise } from "../dist/precise.cjs";
+import { precise } from "../src/precise.js";
 import { BIG_INT_NEG_1 } from "../src/constants.js";
 
 beforeEach(function () {
