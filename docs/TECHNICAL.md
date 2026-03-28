@@ -40,9 +40,9 @@ Where both `t_stop` and `t_start` are `BigInt` values representing nanoseconds. 
 nanoseconds → milliseconds: Δt_ms = ⌊Δt_ns / 10^6⌋
 ```
 
-The conversion uses integer division (`parseInt`) to avoid floating-point precision issues:
+The conversion uses `BigInt` division to avoid floating-point precision issues:
 ```javascript
-result = parseInt(result / 1e6, 10);
+result = Number((this.stopped - this.started) / 1000000n);
 ```
 
 **Precision Limits**
@@ -85,7 +85,7 @@ The `diff()` method converts the `BigInt` delta to a `number`:
 ```javascript
 let result = Number(this.stopped - this.started);  // nanoseconds as number
 if (ms) {
-  result = parseInt(result / 1e6, 10);  // milliseconds as integer
+  result = Number((this.stopped - this.started) / 1000000n);  // milliseconds via BigInt division
 }
 ```
 
