@@ -1,39 +1,40 @@
-✔ Starting state - empty timer throws on diff (0.805897ms)
-✔ Starting state - after start throws NOT_STOPPED on diff (0.108464ms)
-✔ Stopping state - not started throws on diff and stop (0.092814ms)
-✔ Stopping state - after stop throws on stop (0.076033ms)
-✔ Difference - returns nanoseconds and milliseconds (0.153929ms)
-✔ Difference - returns positive value after delay (250.713216ms)
-✔ Chaining - methods return this (0.168317ms)
-✔ Invalid states - throws on invalid operations (0.126147ms)
-✔ Precision - measures time accurately (250.887123ms)
-✔ Reset - returns to initial state (0.258316ms)
-✔ Elapsed - returns time while running (100.744995ms)
-✔ Elapsed - returns milliseconds when requested (100.600684ms)
-✔ Elapsed - throws if not started (0.23945ms)
-✔ Format - returns formatted time string (1502.116215ms)
-✔ Format - includes milliseconds when requested (1501.772158ms)
-✔ Format - formats minutes correctly (75005.981384ms)
-✔ Format - formats hours correctly (0.229842ms)
-✔ Format - throws if not started (0.085181ms)
-ℹ tests 18
+✔ Starting state - empty timer throws on diff (0.826515ms)
+✔ Starting state - after start throws NOT_STOPPED on diff (0.105689ms)
+✔ Stopping state - not started throws on diff and stop (0.093005ms)
+✔ Stopping state - after stop throws on stop (0.080531ms)
+✔ Difference - returns nanoseconds and milliseconds (0.135345ms)
+✔ Difference - returns positive value after delay (250.70082ms)
+✔ Chaining - methods return this (0.187543ms)
+✔ Invalid states - throws on invalid operations (0.162667ms)
+✔ Precision - measures time accurately (249.918789ms)
+✔ Reset - returns to initial state (0.227438ms)
+✔ Elapsed - returns time while running (100.756697ms)
+✔ Elapsed - returns milliseconds when requested (99.719095ms)
+✔ Elapsed - throws if not started (0.266391ms)
+✔ Format - returns formatted time string (1501.589525ms)
+✔ Format - includes milliseconds when requested (1502.212477ms)
+✔ Format - formats minutes correctly (75005.293193ms)
+✔ Format - formats hours correctly (0.22281ms)
+✔ Format - throws if not started and no delta provided (0.082024ms)
+✔ Format - works with delta even if not started (0.067757ms)
+ℹ tests 19
 ℹ suites 0
-ℹ pass 18
+ℹ pass 19
 ℹ fail 0
 ℹ cancelled 0
 ℹ skipped 0
 ℹ todo 0
-ℹ duration_ms 78761.356817
+ℹ duration_ms 78754.755475
 ℹ start of coverage report
 ℹ -----------------------------------------------------------------
 ℹ file             | line % | branch % | funcs % | uncovered lines
 ℹ -----------------------------------------------------------------
 ℹ src              |        |          |         | 
 ℹ  constants.js    | 100.00 |   100.00 |  100.00 | 
-ℹ  precise.js      | 100.00 |    87.50 |  100.00 | 
+ℹ  precise.js      | 100.00 |    90.70 |  100.00 | 
 ℹ tests            |        |          |         | 
-ℹ  precise_test.js | 100.00 |    90.91 |  100.00 | 
+ℹ  precise_test.js | 100.00 |    91.11 |  100.00 | 
 ℹ -----------------------------------------------------------------
-ℹ all files        | 100.00 |    89.41 |  100.00 | 
+ℹ all files        | 100.00 |    91.01 |  100.00 | 
 ℹ -----------------------------------------------------------------
 ℹ end of coverage report

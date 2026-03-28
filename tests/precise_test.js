@@ -140,7 +140,16 @@ test("Format - formats hours correctly", () => {
 	assert.ok(result.includes("5s"), "Should include 5s");
 });
 
-test("Format - throws if not started", () => {
+test("Format - throws if not started and no delta provided", () => {
 	const timer = precise();
 	assert.throws(() => timer.format(), Error, "Should throw NOT_STARTED error");
+});
+
+test("Format - works with delta even if not started", () => {
+	const timer = precise();
+	const mockDelta = 3725000000000n; // 3725 seconds = 1h 2m 5s in nanoseconds
+	const result = timer.format(false, mockDelta);
+	assert.ok(result.includes("1h"), "Should include 1h");
+	assert.ok(result.includes("2m"), "Should include 2m");
+	assert.ok(result.includes("5s"), "Should include 5s");
 });

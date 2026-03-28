@@ -60,16 +60,21 @@ export class Precise {
 	/**
 	 * Returns a human-readable string of the elapsed time
 	 * @param {boolean} [ms=false] - If true, includes milliseconds in output
+	 * @param {bigint} [delta] - Optional delta in nanoseconds (defaults to internal #delta)
 	 * @returns {string} Formatted time string (e.g., "1h 2m 3s 456ms")
-	 * @throws {Error} If timer has not been started
+	 * @throws {Error} If timer has not been started and delta not provided
 	 */
-	format(ms = false) {
-		if (this.#started === BIG_INT_NEG_1) {
+	format(ms = false, delta) {
+		if (delta === undefined && this.#started === BIG_INT_NEG_1) {
 			throw new Error(NOT_STARTED);
 		}
 
 		const elapsedNs =
-			this.#stopped !== BIG_INT_NEG_1 ? this.#delta : hrtime.bigint() - this.#started;
+			delta !== undefined
+				? delta
+				: this.#stopped !== BIG_INT_NEG_1
+					? this.#delta
+					: hrtime.bigint() - this.#started;
 
 		const elapsedMs = Number(elapsedNs / 1000000n);
 		const seconds = Math.floor(elapsedMs / 1000);
