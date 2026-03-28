@@ -6,6 +6,8 @@ import { BIG_INT_NEG_1, NOT_STARTED, NOT_STOPPED, STARTED, STOPPED } from "./con
  * @class
  */
 export class Precise {
+	#delta;
+
 	/**
 	 * Creates a new Precise timer instance
 	 * @constructor
@@ -13,6 +15,7 @@ export class Precise {
 	constructor() {
 		this.started = BIG_INT_NEG_1;
 		this.stopped = BIG_INT_NEG_1;
+		this.#delta = null;
 	}
 
 	/**
@@ -30,9 +33,9 @@ export class Precise {
 			throw new Error(NOT_STOPPED);
 		}
 
-		const delta = this.stopped - this.started;
+		const result = this.#delta;
 
-		return ms ? Number(delta / 1000000n) : Number(delta);
+		return ms ? Number(result / 1000000n) : Number(result);
 	}
 
 	/**
@@ -42,6 +45,7 @@ export class Precise {
 	reset() {
 		this.started = BIG_INT_NEG_1;
 		this.stopped = BIG_INT_NEG_1;
+		this.#delta = null;
 
 		return this;
 	}
@@ -57,6 +61,7 @@ export class Precise {
 		}
 
 		this.started = hrtime.bigint();
+		this.#delta = null;
 
 		return this;
 	}
@@ -76,6 +81,7 @@ export class Precise {
 		}
 
 		this.stopped = hrtime.bigint();
+		this.#delta = this.stopped - this.started;
 
 		return this;
 	}
