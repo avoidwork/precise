@@ -63,7 +63,6 @@ export class Precise {
 		}
 
 		this.#started = hrtime.bigint();
-		this.#delta = BIG_INT_NEG_1;
 
 		return this;
 	}
