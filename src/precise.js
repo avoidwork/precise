@@ -15,7 +15,7 @@ export class Precise {
 	constructor() {
 		this.started = BIG_INT_NEG_1;
 		this.stopped = BIG_INT_NEG_1;
-		this.#delta = null;
+		this.#delta = BIG_INT_NEG_1;
 	}
 
 	/**
@@ -45,7 +45,7 @@ export class Precise {
 	reset() {
 		this.started = BIG_INT_NEG_1;
 		this.stopped = BIG_INT_NEG_1;
-		this.#delta = null;
+		this.#delta = BIG_INT_NEG_1;
 
 		return this;
 	}
@@ -61,7 +61,7 @@ export class Precise {
 		}
 
 		this.started = hrtime.bigint();
-		this.#delta = null;
+		this.#delta = BIG_INT_NEG_1;
 
 		return this;
 	}
