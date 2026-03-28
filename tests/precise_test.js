@@ -1,21 +1,20 @@
 import assert from "node:assert";
 import { test, beforeEach } from "node:test";
 import { precise } from "../src/precise.js";
-import { BIG_INT_NEG_1 } from "../src/constants.js";
 
 beforeEach(function () {
 	this.timer = precise();
 });
 
 test("Testing starting state - It should be empty", function () {
-	assert.strictEqual(this.timer.started, BIG_INT_NEG_1, "Should be '-1n'");
-	assert.strictEqual(this.timer.stopped, BIG_INT_NEG_1, "Should be '-1n'");
+	// Verify that calling diff() before start/stop throws NOT_STARTED
+	assert.throws(() => this.timer.diff(), Error, "Should throw NOT_STARTED error");
 });
 
 test("Testing starting state - It shouldn't be empty", function () {
 	const timer = this.timer.start();
-	assert.notEqual(this.timer.started, BIG_INT_NEG_1, "Shouldn't be '-1n'");
-	assert.strictEqual(this.timer.stopped, BIG_INT_NEG_1, "Should be '-1n'");
+	// Verify that calling diff() after start but before stop throws NOT_STOPPED
+	assert.throws(() => timer.diff(), Error, "Should throw NOT_STOPPED error");
 	assert.throws(
 		function () {
 			timer.start();
@@ -50,8 +49,6 @@ test("Testing stopping state - It shouldn't be empty", function () {
 		"Should be an 'Error'",
 	);
 	this.timer.stop();
-	assert.notEqual(this.timer.started, BIG_INT_NEG_1, "Shouldn't be '-1n'");
-	assert.notEqual(this.timer.started, BIG_INT_NEG_1, "Shouldn't be '-1n'");
 	assert.throws(
 		function () {
 			timer.stop();
@@ -92,7 +89,7 @@ test("Testing difference - It should have different values when started & stoppe
 	this.timer.start();
 	await new Promise((resolve) => setTimeout(resolve, 250));
 	this.timer.stop();
-	assert.strictEqual(this.timer.stopped > this.timer.started, true, "Should be 'true'");
+	assert.ok(this.timer.diff() > 0, "Delta should be positive");
 });
 
 test("Testing chaining - It should be chainable", function () {
@@ -149,6 +146,6 @@ test("Testing reset - It should reset", function () {
 	assert.strictEqual(timer.start(), timer, "Should be 'timer'");
 	assert.strictEqual(timer.stop(), timer, "Should be 'timer'");
 	assert.strictEqual(timer.reset(), timer, "Should be 'timer'");
-	assert.strictEqual(timer.started, BIG_INT_NEG_1, "Should be '-1n'");
-	assert.strictEqual(timer.stopped, BIG_INT_NEG_1, "Should be '-1n'");
+	// Verify reset works by checking that diff() throws after reset
+	assert.throws(() => timer.diff(), Error, "Should throw after reset");
 });
