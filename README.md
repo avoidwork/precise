@@ -1,6 +1,17 @@
 # precise
 
-Nanosecond timer for node.js
+Nanosecond-precision timer for Node.js using `process.hrtime.bigint()`.
+
+## Why precise over `performance.now()`?
+
+While `performance.now()` provides millisecond precision with sub-millisecond fractional parts, **`precise` delivers true nanosecond accuracy** using Node.js's `process.hrtime.bigint()` API:
+
+| Method | Precision | Resolution |
+|--------|-----------|------------|
+| `performance.now()` | Milliseconds | ~0.1-1ms |
+| `precise` | Nanoseconds | ~1ns |
+
+For performance-critical applications measuring code execution, benchmarking, or profiling, the 6 decimal places of additional precision can reveal timing differences that `performance.now()` simply cannot detect.
 
 ## Using the factory
 
@@ -28,12 +39,14 @@ class MyTimer extends Precise {}
 Precise has 100% code coverage with its tests.
 
 ```console
--------------|---------|----------|---------|---------|-------------------
-File         | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s
--------------|---------|----------|---------|---------|-------------------
-All files    |     100 |      100 |     100 |     100 |                  
- precise.cjs |     100 |      100 |     100 |     100 |                  
--------------|---------|----------|---------|---------|-------------------
+ℹ start of coverage report
+ℹ ----------------------------------------------------------
+ℹ file      | line % | branch % | funcs % | uncovered lines
+ℹ ----------------------------------------------------------
+ℹ ----------------------------------------------------------
+ℹ all files | 100.00 |   100.00 |  100.00 | 
+ℹ ----------------------------------------------------------
+ℹ end of coverage report
 ```
 
 ## API
@@ -41,6 +54,14 @@ All files    |     100 |      100 |     100 |     100 |
 ### diff(ms = false)
 
 Returns the time delta between `start()` & `stop()`; setting optional parameter to `true` will return the delta as milliseconds
+
+### elapsed(ms = false)
+
+Returns the elapsed time since `start()` without stopping the timer
+
+### format(ms = false, delta)
+
+Returns a human-readable string of the elapsed time. Optional `delta` parameter allows formatting a custom nanosecond value.
 
 ### reset()
 
@@ -56,5 +77,5 @@ Stops a timer
 
 ## License
 
-Copyright (c) 2023 Jason Mulligan
+Copyright (c) 2026 Jason Mulligan
 Licensed under the BSD-3 license
