@@ -6,6 +6,8 @@ import { BIG_INT_NEG_1, NOT_STARTED, NOT_STOPPED, STARTED, STOPPED } from "./con
  * @class
  */
 export class Precise {
+	#started;
+	#stopped;
 	#delta;
 
 	/**
@@ -13,8 +15,8 @@ export class Precise {
 	 * @constructor
 	 */
 	constructor() {
-		this.started = BIG_INT_NEG_1;
-		this.stopped = BIG_INT_NEG_1;
+		this.#started = BIG_INT_NEG_1;
+		this.#stopped = BIG_INT_NEG_1;
 		this.#delta = BIG_INT_NEG_1;
 	}
 
@@ -25,11 +27,11 @@ export class Precise {
 	 * @throws {Error} If timer has not been started or stopped
 	 */
 	diff(ms = false) {
-		if (this.started === BIG_INT_NEG_1) {
+		if (this.#started === BIG_INT_NEG_1) {
 			throw new Error(NOT_STARTED);
 		}
 
-		if (this.stopped === BIG_INT_NEG_1) {
+		if (this.#stopped === BIG_INT_NEG_1) {
 			throw new Error(NOT_STOPPED);
 		}
 
@@ -43,8 +45,8 @@ export class Precise {
 	 * @returns {Precise} Returns this for chaining
 	 */
 	reset() {
-		this.started = BIG_INT_NEG_1;
-		this.stopped = BIG_INT_NEG_1;
+		this.#started = BIG_INT_NEG_1;
+		this.#stopped = BIG_INT_NEG_1;
 		this.#delta = BIG_INT_NEG_1;
 
 		return this;
@@ -56,11 +58,11 @@ export class Precise {
 	 * @throws {Error} If timer has already been started
 	 */
 	start() {
-		if (this.started > BIG_INT_NEG_1) {
+		if (this.#started > BIG_INT_NEG_1) {
 			throw new Error(STARTED);
 		}
 
-		this.started = hrtime.bigint();
+		this.#started = hrtime.bigint();
 		this.#delta = BIG_INT_NEG_1;
 
 		return this;
@@ -72,16 +74,16 @@ export class Precise {
 	 * @throws {Error} If timer has not been started or has already been stopped
 	 */
 	stop() {
-		if (this.started === BIG_INT_NEG_1) {
+		if (this.#started === BIG_INT_NEG_1) {
 			throw new Error(NOT_STARTED);
 		}
 
-		if (this.stopped > BIG_INT_NEG_1) {
+		if (this.#stopped > BIG_INT_NEG_1) {
 			throw new Error(STOPPED);
 		}
 
-		this.stopped = hrtime.bigint();
-		this.#delta = this.stopped - this.started;
+		this.#stopped = hrtime.bigint();
+		this.#delta = this.#stopped - this.#started;
 
 		return this;
 	}
