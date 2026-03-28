@@ -149,3 +149,59 @@ test("Testing reset - It should reset", function () {
 	// Verify reset works by checking that diff() throws after reset
 	assert.throws(() => timer.diff(), Error, "Should throw after reset");
 });
+
+test("Testing elapsed - It should return elapsed time while running", async function () {
+	const timer = this.timer;
+	timer.start();
+	await new Promise((resolve) => setTimeout(resolve, 100));
+	const elapsed = timer.elapsed();
+	assert.ok(elapsed > 0, "Elapsed should be positive");
+	assert.ok(elapsed >= 100000000, "Elapsed should be at least 100ms in nanoseconds");
+	timer.stop();
+});
+
+test("Testing elapsed - It should return milliseconds when requested", async function () {
+	const timer = this.timer;
+	timer.start();
+	await new Promise((resolve) => setTimeout(resolve, 100));
+	const elapsedMs = timer.elapsed(true);
+	assert.ok(elapsedMs >= 90 && elapsedMs < 200, "Elapsed ms should be around 100");
+	timer.stop();
+});
+
+test("Testing elapsed - It should throw if not started", function () {
+	assert.throws(() => this.timer.elapsed(), Error, "Should throw NOT_STARTED error");
+});
+
+test("Testing format - It should return formatted time string", async function () {
+	const timer = this.timer;
+	timer.start();
+	await new Promise((resolve) => setTimeout(resolve, 1500));
+	timer.stop();
+	const formatted = timer.format();
+	assert.ok(formatted.includes("s"), "Should include seconds");
+	assert.ok(formatted.includes("ms") === false, "Should not include ms by default");
+});
+
+test("Testing format - It should include milliseconds when requested", async function () {
+	const timer = this.timer;
+	timer.start();
+	await new Promise((resolve) => setTimeout(resolve, 1500));
+	timer.stop();
+	const formatted = timer.format(true);
+	assert.ok(formatted.includes("ms"), "Should include milliseconds");
+});
+
+test("Testing format - It should format hours and minutes", async function () {
+	const timer = this.timer;
+	timer.start();
+	await new Promise((resolve) => setTimeout(resolve, 75000)); // 75 seconds = 1m 15s
+	timer.stop();
+	const formatted = timer.format();
+	assert.ok(formatted.includes("1m"), "Should include minutes");
+	assert.ok(formatted.includes("15s"), "Should include seconds");
+});
+
+test("Testing format - It should throw if not started", function () {
+	assert.throws(() => this.timer.format(), Error, "Should throw NOT_STARTED error");
+});

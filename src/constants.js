@@ -1,6 +1,3 @@
-/**
- * Error message: Timer has already been started
- */
 export const STARTED = "Timer has been started";
 
 /**

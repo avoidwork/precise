@@ -3,16 +3,6 @@
  */
 export class Precise {
 	/**
-	 * Nanosecond timestamp when started, or -1n if not started
-	 */
-	started: bigint;
-
-	/**
-	 * Nanosecond timestamp when stopped, or -1n if not stopped
-	 */
-	stopped: bigint;
-
-	/**
 	 * Creates a new Precise timer instance
 	 */
 	constructor();
@@ -24,6 +14,22 @@ export class Precise {
 	 * @throws Error if timer has not been started or stopped
 	 */
 	diff(ms?: boolean): number;
+
+	/**
+	 * Returns the elapsed time since start() without stopping the timer
+	 * @param ms - If true, returns milliseconds instead of nanoseconds
+	 * @returns Elapsed time in nanoseconds or milliseconds
+	 * @throws Error if timer has not been started
+	 */
+	elapsed(ms?: boolean): number;
+
+	/**
+	 * Returns a human-readable string of the elapsed time
+	 * @param ms - If true, includes milliseconds in output
+	 * @returns Formatted time string (e.g., "1h 2m 3s 456ms")
+	 * @throws Error if timer has not been started
+	 */
+	format(ms?: boolean): string;
 
 	/**
 	 * Resets the timer to its initial state
