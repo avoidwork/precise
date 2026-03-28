@@ -64,19 +64,21 @@ const milliseconds = timer.elapsed(true); // milliseconds
 - **Returns:** `number` - Elapsed time in nanoseconds or milliseconds
 - **Throws:** `Error` if the timer has not been started
 
-#### `format(ms = false)`
+#### `format(ms = false, delta)`
 
 Returns a human-readable string of the elapsed time.
 
 ```javascript
 timer.format();       // "1h 2m 3s"
 timer.format(true);   // "1h 2m 3s 456ms"
+timer.format(false, 3725000000000n);  // "1h 2m 5s" with custom delta
 ```
 
 - **Parameters:**
   - `ms` (`boolean`, optional, default: `false`) - If `true`, includes milliseconds in output
+  - `delta` (`bigint`, optional) - Optional delta in nanoseconds (defaults to internal `#delta`)
 - **Returns:** `string` - Formatted time string (e.g., "1h 2m 3s 456ms")
-- **Throws:** `Error` if the timer has not been started
+- **Throws:** `Error` if the timer has not been started and delta not provided
 
 #### `reset()`
 

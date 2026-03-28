@@ -26,10 +26,11 @@ export class Precise {
 	/**
 	 * Returns a human-readable string of the elapsed time
 	 * @param ms - If true, includes milliseconds in output
+	 * @param delta - Optional delta in nanoseconds (defaults to internal #delta)
 	 * @returns Formatted time string (e.g., "1h 2m 3s 456ms")
-	 * @throws Error if timer has not been started
+	 * @throws Error if timer has not been started and delta not provided
 	 */
-	format(ms?: boolean): string;
+	format(ms?: boolean, delta?: bigint): string;
 
 	/**
 	 * Resets the timer to its initial state

@@ -48,9 +48,9 @@ Returns the time delta between `start()` & `stop()`; setting optional parameter 
 
 Returns the elapsed time since `start()` without stopping the timer
 
-### format(ms = false)
+### format(ms = false, delta)
 
-Returns a human-readable string of the elapsed time (e.g., "1h 2m 3s 456ms")
+Returns a human-readable string of the elapsed time. Optional `delta` parameter allows formatting a custom nanosecond value.
 
 ### reset()
 
