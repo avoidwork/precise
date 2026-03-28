@@ -33,7 +33,7 @@
     "lint": "oxlint *.js src tests && oxfmt *.js src tests --check",
     "prepare": "husky install",
     "test": "npm run lint && node --experimental-test-coverage --test",
-    "coverage": "node --test --experimental-test-coverage --test-coverage-exclude=dist/** --test-coverage-exclude=tests/** --test-reporter=spec tests/**/*.test.js 2>&1 | grep -A 1000 \"start of coverage report\" > coverage.txt && ! grep -q \"failing tests\" coverage.txt",
+    "coverage": "node --test --experimental-test-coverage --test-coverage-exclude=dist/** --test-reporter=spec tests/**/*.test.js 2>&1 | tee coverage.txt && ! grep -q \"failing tests\" coverage.txt",
     "types": "npx -p typescript tsc src/precise.js --declaration --allowJs --emitDeclarationOnly --outDir ./types"
   },
   "devDependencies": {
