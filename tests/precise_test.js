@@ -136,3 +136,10 @@ test("Format - works with delta even if not started", () => {
 	assert.ok(result.includes("2m"), "Should include 2m");
 	assert.ok(result.includes("5s"), "Should include 5s");
 });
+
+test("Format - uses internal delta when timer is stopped and no delta provided", () => {
+	const timer = precise().start().stop();
+	const formatted = timer.format(false);
+	assert.ok(formatted.length > 0, "Should return non-empty string");
+	assert.ok(!formatted.includes("undefined"), "Should not include undefined");
+});

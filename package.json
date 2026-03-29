@@ -1,7 +1,7 @@
 {
   "name": "precise",
   "description": "Precision timer for nanosecond differences",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "homepage": "https://github.com/avoidwork/precise",
   "author": "Jason Mulligan <jason.mulligan@avoidwork.com>",
   "repository": {
@@ -19,6 +19,11 @@
     "import": "./dist/precise.js",
     "require": "./dist/precise.cjs"
   },
+  "files": [
+    "dist/precise.cjs",
+    "dist/precise.js",
+    "types/precise.d.ts"
+  ],
   "type": "module",
   "types": "types/precise.d.ts",
   "engineStrict": true,
