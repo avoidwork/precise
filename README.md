@@ -1,6 +1,14 @@
+
+
 # precise
 
 Nanosecond-precision timer for Node.js using `process.hrtime.bigint()`.
+
+## Installation
+
+```bash
+npm install precise
+```
 
 ## Why precise over `performance.now()`?
 
